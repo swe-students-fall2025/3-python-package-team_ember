@@ -1,3 +1,3 @@
-from .main import generate
+from .main import get_excuse
 
-__all__ = ["generate"]
+__all__ = ["get_excuse"]

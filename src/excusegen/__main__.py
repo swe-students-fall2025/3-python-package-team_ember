@@ -1,4 +1,5 @@
-from .main import generate
+from webbrowser import get
+from .main import get_excuse
 
 if __name__ == "__main__":
-    print(generate())
+    print(get_excuse())

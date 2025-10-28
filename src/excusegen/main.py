@@ -54,7 +54,7 @@ EXCUSES = {
 }
 
 
-def generate(category="general"):
+def get_excuse(category="general"):
     """
     Return randomly chosen excuse from the selected category.
 
