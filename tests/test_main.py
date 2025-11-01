@@ -21,7 +21,7 @@ def test_get_excuse_returns_valid_excuse():
 
 #tests for getexcuses
 def test_get_excuses_returns_all_when_count_is_none():
-    all_general = get_excuses("gener al", None)
+    all_general = get_excuses("general", None)
     assert isinstance(all_general, list)
     assert all_general == list(EXCUSES["general"])
 
