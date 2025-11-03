@@ -1,8 +1,19 @@
 
 import random
 import pytest
-from excusegen import get_excuse, get_excuses, list_excuses
+from excusegen import get_excuse, get_excuses, add_excuse, list_excuses
+import copy
 from excusegen.main import EXCUSES
+
+
+@pytest.fixture(autouse=True)
+def _isolate_excuses():
+    backup = copy.deepcopy(EXCUSES)
+    try:
+        yield
+    finally:
+        EXCUSES.clear()
+        EXCUSES.update(backup)
 
 
 def test_get_excuse_returns_valid_string():
@@ -80,5 +91,51 @@ def test_list_excuses_case_insensitive():
     assert result_lower == result_upper == result_mixed
 
 
+#test for add excuse
+def test_add_excuse_adds_new_item():
+    #successfully add a new excuse to an existing category
+    category = "general"
+    new_excuse = "Aliens deleted my code."
+    initial_len = len(EXCUSES[category])
+
+    result = add_excuse(category, new_excuse)
+
+    assert result == new_excuse
+    assert len(EXCUSES[category]) == initial_len + 1
+    assert new_excuse in EXCUSES[category]
 
 
+def test_add_excuse_invalid_category_raises_error():
+    #raise ValueError when category does not exist
+    with pytest.raises(ValueError):
+        add_excuse("nonsense", "This shouldn't work.")
+
+
+def test_add_excuse_invalid_excuse_value_raises_error():
+    #raise ValueError when excuse is empty, whitespace, or None
+    with pytest.raises(ValueError):
+        add_excuse("meeting", "")
+    with pytest.raises(ValueError):
+        add_excuse("meeting", "   ")
+    with pytest.raises(ValueError):
+        add_excuse("meeting", None)
+
+
+def test_add_excuse_invalid_category_type_raises_error():
+    #raise ValueError when category is not a string
+    with pytest.raises(ValueError):
+        add_excuse(123, "This should fail.")
+    with pytest.raises(ValueError):
+        add_excuse(["general"], "This should fail.")
+
+
+def test_add_excuse_duplicate_not_added():
+    #not increase the list length if excuse is repeated
+    category = "class"
+    existing_excuse = EXCUSES[category][0]
+    initial_len = len(EXCUSES[category])
+
+    result = add_excuse(category, existing_excuse)
+
+    assert result == existing_excuse
+    assert len(EXCUSES[category]) == initial_len

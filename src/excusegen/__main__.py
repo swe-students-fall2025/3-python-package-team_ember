@@ -14,3 +14,4 @@ if __name__ == "__main__":
     excuses = get_excuses(count = 4)
     for e in excuses:
         print(e)
+        
