@@ -68,3 +68,41 @@ def get_excuses(category="general", count = None ):
     ret = random.sample(EXCUSES[category], k=n)
     ret.extend(random.choices(EXCUSES[category], k=count - n))
     return ret
+
+
+def add_excuse(category, excuse):
+    """
+    Add a new excuse to an existing category.
+
+    Args:
+        category (str): category name ('deadline', 'meeting', 'class', or 'general')
+        excuse (str): text of the excuse to add
+
+    Returns:
+        str: the excuse that was added
+
+    Raises:
+        ValueError: if category not found or excuse invalid
+    """
+    #check if it is a string or not
+    if not isinstance(category, str):
+        raise ValueError("Category must be a string.")
+    category = category.lower().strip()
+
+    #validate category
+    if category not in EXCUSES:
+        raise ValueError("Invalid category. Try 'deadline', 'meeting', 'class', or 'general'.")
+
+    #validate the new excuse
+    if not isinstance(excuse, str) or not excuse.strip():
+        raise ValueError("Excuse must be a non-empty string.")
+    excuse = excuse.strip()
+
+    if excuse in EXCUSES[category]:
+        print("Excuse already exists; no changes made.")
+        return excuse
+
+    #add this new excuse
+    EXCUSES[category].append(excuse)
+
+    return excuse
