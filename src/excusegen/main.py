@@ -68,3 +68,16 @@ def get_excuses(category="general", count = None ):
     ret = random.sample(EXCUSES[category], k=n)
     ret.extend(random.choices(EXCUSES[category], k=count - n))
     return ret
+
+def list_excuses(category="general"):
+    """
+    Return all excuses from the selected category as a list.
+
+    Args: category (str): type of excuse to return (deadline, meeting, class, or general)
+
+    Raises ValueError if the category doesn't exist
+    """
+    category = category.lower()
+    if category not in EXCUSES:
+        raise ValueError("Invalid category. Try 'deadline', 'meeting', 'class', or 'general'.")
+    return list(EXCUSES[category])
