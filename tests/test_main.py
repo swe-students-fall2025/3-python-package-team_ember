@@ -1,7 +1,7 @@
 
 import random
 import pytest
-from excusegen import get_excuse, get_excuses
+from excusegen import get_excuse, get_excuses, list_excuses
 from excusegen.main import EXCUSES
 
 
@@ -53,6 +53,31 @@ def test_get_excuse_count_greater_than_pool_size():
     res = get_excuses(cat, n)
     assert len(res) == n
     assert set(res).issubset(set(EXCUSES[cat]))
+
+#tests for list_excuses
+def test_list_excuses_returns_list():
+    result = list_excuses()
+    assert isinstance(result, list)
+    assert len(result) > 0
+
+def test_list_excuses_returns_all_excuses_from_category():
+    result = list_excuses("deadline")
+    assert result == list(EXCUSES["deadline"])
+    assert len(result) == len(EXCUSES["deadline"])
+
+def test_list_excuses_invalid_category_raises_value_error():
+    with pytest.raises(ValueError):
+        list_excuses("invalid-category")
+
+def test_list_excuses_default_category():
+    result = list_excuses()
+    assert result == list(EXCUSES["general"])
+
+def test_list_excuses_case_insensitive():
+    result_lower = list_excuses("meeting")
+    result_upper = list_excuses("MEETING")
+    result_mixed = list_excuses("MeEtInG")
+    assert result_lower == result_upper == result_mixed
 
 
 
