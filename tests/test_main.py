@@ -139,3 +139,38 @@ def test_add_excuse_duplicate_not_added():
 
     assert result == existing_excuse
     assert len(EXCUSES[category]) == initial_len
+
+@pytest.mark.parametrize("bad", [123, 3.14, [], {}, None])
+def test_get_excuse_invalid_category_type(bad):
+    with pytest.raises((TypeError, ValueError, KeyError)):
+        get_excuse(bad)
+
+def test_add_excuse_trims_and_rejects_empty():
+    with pytest.raises(ValueError):
+        add_excuse("deadline", "   \t  ")
+
+    trimmed = add_excuse("deadline", "  A real excuse  ")
+    assert trimmed == "A real excuse"
+
+def test_list_excuses_returns_deep_copy():
+    data = list_excuses()
+    # mutate returned structure
+    some_cat = next(iter(data))
+    data[some_cat].append("SHOULD NOT LEAK")
+    # original should remain unchanged
+    from excusegen.main import EXCUSES
+    assert "SHOULD NOT LEAK" not in EXCUSES[some_cat]
+
+def test_get_excuses_zero_returns_empty():
+    assert get_excuses(count=0) == []
+
+def test_get_excuses_negative_raises():
+    with pytest.raises(ValueError):
+        get_excuses(count=-1)
+
+@pytest.mark.parametrize("k", [1, 2, 5, 10])
+def test_get_excuses_count_length(k):
+    res = get_excuses(count=k)
+    assert isinstance(res, list)
+    assert len(res) == k
+    assert all(isinstance(x, str) and x.strip() for x in res)
