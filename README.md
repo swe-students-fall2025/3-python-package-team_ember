@@ -57,17 +57,26 @@ Then, run the package from the command line:
 
 Or use it in Python code:
 
-    from excusegen import generate
+    from excusegen import get_excuse, get_excuses, add_excuse, list_excuses
 
-    print(generate())              # returns a general excuse
-    print(generate("deadline"))    # returns a deadline-related excuse
-    print(generate("meeting"))     # returns a meeting-related excuse
+    print(get_excuse())                # returns a general excuse
+    print(get_excuse("deadline"))      # returns a deadline-related excuse
+    print(get_excuses("meeting", count=2))   # returns two excuses from the meeting category
+    add_excuse("general", "My keyboard took a break.")   # adds a new excuse
+    print(list_excuses("general"))     # lists all general excuses
 
 Available categories:
 - general
 - deadline
 - meeting
 - class
+
+Example python code with all functions: 
+[example.py](https://github.com/swe-students-fall2025/3-python-package-team_ember/blob/pipfile-experiment/example.py)
+
+Run the example python code from the command line:
+
+    python3 example.py
 
 ## Functions and Features
 
