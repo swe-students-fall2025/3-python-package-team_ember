@@ -72,7 +72,7 @@ Available categories:
 - class
 
 Example python code with all functions: 
-[example.py] (https://github.com/swe-students-fall2025/3-python-package-team_ember/blob/pipfile-experiment/example.py)
+[example.py](https://github.com/swe-students-fall2025/3-python-package-team_ember/blob/pipfile-experiment/example.py)
 
 Run the example python code from the command line:
 
