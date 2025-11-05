@@ -73,7 +73,7 @@ def get_excuses(category="general", count = None ):
     ret.extend(random.choices(EXCUSES[category], k=count - n))
     return ret
 
-def list_excuses(category="general"):
+def list_excuses(category=None):
     """
     Return all excuses from the selected category as a list.
 
