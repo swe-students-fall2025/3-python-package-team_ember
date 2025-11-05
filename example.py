@@ -1,16 +1,5 @@
 from excusegen import get_excuse, get_excuses, add_excuse, list_excuses
 
-print("One random excuse:")
-print(get_excuse())
-
-print("\nAll general excuses:")
-print(get_excuses("class"))
-
-print("\nAdd a new excuse:")
-add_excuse("general", "Aliens deleted my code.")
-print(get_excuses("general"))
-
-
 def divider(title):
     print("\n" + "=" * 10 + f" {title} " + "=" * 10)
 
@@ -57,23 +46,6 @@ def main():
 
     print("\nAdd the same line again:")
     again = add_excuse("general", new_line)
-
-    # 5. Error Handling Example
-    divider("5. Error Handling Example")
-    try:
-        get_excuse("unknown")
-    except ValueError as e:
-        print("Invalid category ->", e)
-
-    try:
-        get_excuses("general", count="two")
-    except TypeError as e:
-        print("Wrong count type ->", e)
-
-    try:
-        get_excuses("general", count=-1)
-    except ValueError as e:
-        print("Negative count ->", e)
 
 if __name__ == "__main__":
     main()

@@ -32,7 +32,9 @@ def get_excuse(category="general"):
 
     Raises ValueError if the category doesn't exist
     """
-    category = category.lower()
+    if not isinstance(category, str):
+        raise TypeError("category must be a string")
+    category = category.lower().strip()
     if category not in EXCUSES:
         raise ValueError("Invalid category. Try 'deadline', 'meeting', 'class', or 'general'.")
     return random.choice(EXCUSES[category])
@@ -51,7 +53,9 @@ def get_excuses(category="general", count = None ):
     Raises TypeError if count is not an int
     Raises ValueError if count less than 0
     """
-    category = category.lower()
+    if not isinstance(category, str):
+        raise TypeError("category must be a string")
+    category = category.lower().strip()
     if category not in EXCUSES:
         raise ValueError("Invalid category. Try 'deadline', 'meeting', 'class', or 'general'.")
     if count is None:
@@ -77,7 +81,11 @@ def list_excuses(category="general"):
 
     Raises ValueError if the category doesn't exist
     """
-    category = category.lower()
+    if category is None:
+        return {k: list(v) for k, v in EXCUSES.items()}
+    if not isinstance(category, str):
+        raise TypeError("category must be a string")
+    category = category.lower().strip()
     if category not in EXCUSES:
         raise ValueError("Invalid category. Try 'deadline', 'meeting', 'class', or 'general'.")
     return list(EXCUSES[category])
