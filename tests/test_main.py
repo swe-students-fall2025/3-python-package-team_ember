@@ -67,9 +67,12 @@ def test_get_excuse_count_greater_than_pool_size():
 
 #tests for list_excuses
 def test_list_excuses_returns_list():
-    result = list_excuses()
-    assert isinstance(result, list)
-    assert len(result) > 0
+    data = list_excuses()
+    assert isinstance(data, dict)
+    assert set(data.keys()) == set(EXCUSES.keys())
+    for k, v in data.items():
+        assert isinstance(v, list)
+        assert v == EXCUSES[k] and v is not EXCUSES[k]
 
 def test_list_excuses_returns_all_excuses_from_category():
     result = list_excuses("deadline")
@@ -81,7 +84,8 @@ def test_list_excuses_invalid_category_raises_value_error():
         list_excuses("invalid-category")
 
 def test_list_excuses_default_category():
-    result = list_excuses()
+    result = list_excuses("general")
+    assert isinstance(result, list)
     assert result == list(EXCUSES["general"])
 
 def test_list_excuses_case_insensitive():
