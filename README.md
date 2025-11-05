@@ -1,5 +1,5 @@
 # excusegen 
-**excusegen** is a python package that generates random excuses for various situations, for those of us who are less creative. Read about the project on PyPI [here](https://pypi.org/project/excusegen/0.1.0/ "link to PyPI page")!
+**excusegen** is a python package that generates random excuses for various situations, for those of us who are less creative. Read about the project on PyPI [here](https://pypi.org/project/excusegen/0.1.2/ "link to PyPI page")!
 
 [![CI / CD](https://github.com/swe-students-fall2025/3-python-package-team_ember/actions/workflows/build.yaml/badge.svg)](https://github.com/swe-students-fall2025/3-python-package-team_ember/actions/workflows/build.yaml)
 
