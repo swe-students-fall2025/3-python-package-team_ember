@@ -3,9 +3,11 @@
 
 ## Team Members
 
-[Jeffrey Chen](https://github.com/jzc719 "Jeffrey's GitHub profile")
-[Sophia Fu](https://github.com/Sophiaaa430 "Sophia's GitHub profile")
-[Jacob Ng](https://github.com/jng20 "Jacob's GitHub profile")
+[Jeffrey Chen](https://github.com/jzc719 "Jeffrey's GitHub profile")<br>
+[Sophia Fu](https://github.com/Sophiaaa430 "Sophia's GitHub profile")<br>
+[Avi Herman](https://github.com/avih7531 "Avi's GitHub profile")<br>
+[Alissa Hsu](https://github.com/alissahsu22 "Alissa's GitHub profile")<br>
+[Jacob Ng](https://github.com/jng20 "Jacob's GitHub profile") <br>
 
 ## Installation and Testing (for Developers)
 
